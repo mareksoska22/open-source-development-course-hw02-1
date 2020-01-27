@@ -38,9 +38,9 @@ class Vector:
         self.d[key] = value
 
     def __cmp__(self, other):
-        if self.length(self) < self.length(other):
+        if self.length() < other.length():
             return -1
-        if self.length(self) == self.length(other):
+        if self.length() == other.length():
             return 0
         return 1
 
