@@ -19,6 +19,12 @@ class VectorTest(unittest.TestCase):
 
         self.assertEqual(c.get(), [3, 3, 3, 3])
 
+    def test_cmp(self):
+        a = Vector([1, 2, 1, 3])
+        b = Vector([1, 2, 1, 3])
+
+        self.assertEqual(a.__cmp__(b), 0)
+
 
 if __name__ == "__main__":
     unittest.main()  # pragma: no cover
