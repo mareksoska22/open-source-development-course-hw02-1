@@ -36,6 +36,7 @@ class Vector:
 
     def __setitem__(self, key, value):
         self.d[key] = value
+        return self
 
     def __cmp__(self, other):
         if self.length() < other.length():
