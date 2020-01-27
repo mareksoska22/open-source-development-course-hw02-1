@@ -20,5 +20,71 @@ class VectorTest(unittest.TestCase):
         self.assertEqual(c.get(), [3, 3, 3, 3])
 
 
+    def test_length(self):
+        a = Vector([4, 4, 1])
+        b = Vector([1, 4, 4, 0, 0])
+        c = Vector([2, 2, 2, 2])
+
+        self.assertEqual(a.length(), b.length())
+        self.assertEqual(c.length(), 4)
+
+
+    def test_cmp(self):
+        a = Vector([1, 2, 1, 3])
+        b = Vector([1, 2, 1, 3])
+        c = Vector([3, 2, 1, 0])
+        d = Vector([3, 2, 1])
+        e = Vector([1, 3, 2])
+
+        self.assertEqual(a.__cmp__(b), 0)
+        self.assertEqual(a.__cmp__(c), 1)
+        self.assertEqual(c.__cmp__(b), -1)
+        self.assertEqual(c.__cmp__(d), 0)
+        self.assertEqual(c.__cmp__(e), 0)
+
+    def test_neg(self):
+        a = Vector([1, 2, 0, 2])
+        b = Vector([-1, -2, 0, -2])
+
+        self.assertEqual(a.__neg__().get(), b.get())
+        self.assertNotEqual(a.__neg__().get(), a.get())
+
+    def test_reversed(self):
+        a = Vector([1, 10, 15, 4])
+        b = Vector([4, 15, 10, 1])
+        c = Vector
+
+        self.assertEqual(a.__reversed__().get(), b.get())
+        self.assertNotEqual(a.__reversed__().get(), a.get())
+
+    def test_sub(self):
+        a = Vector([1, 0, 0, 2])
+        b = Vector([2, 3, 3, 3])
+
+        self.assertEqual(b.__sub__(a).get(), [1, 3, 3, 1])
+        self.assertEqual(b.__sub__(3).get(), [-1, 0, 0, 0])
+
+    def test_mul(self):
+        a = Vector([2, 3, 3, 0])
+        b = Vector([20, 30, 30, 0])
+
+        self.assertEqual(a.__mul__(1).get(), a.get())
+        self.assertEqual(a.__mul__(10).get(), b.get())
+        self.assertEqual(a.__mul__(-1).get(), a.__neg__().get())
+
+    def test_xor(self):
+        a = Vector([2, 2, 2, 2])
+        b = Vector([3, 2, 2, 3])
+
+        self.assertEqual(a.__xor__(2).get(), [0, 0, 0, 0])
+        self.assertEqual(b.__xor__(3).get(), [0, 1, 1, 0])
+
+    def test_setitem(self):
+        a = Vector([1, 2, 3, 4, 5])
+
+        a.__setitem__(2, 10)
+        a.__setitem__(0, 0)
+        self.assertEqual(a.get(), [0, 2, 10, 4, 5])
+
 if __name__ == "__main__":
     unittest.main()  # pragma: no cover
