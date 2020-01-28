@@ -10,7 +10,7 @@ a = Vector([0, 1, 2, 3])
 print(a)
 ```
 
-Operations:
+Operations: (Supported verctor-based operations)
 - Addition with a scalar: `a + 1`
 - Vector addition: `a + b`
 - Vector comparison: `a >/>=/</<=/==/!= b` compares vectors according to their length
