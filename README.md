@@ -21,6 +21,7 @@ Operations:
 - Multiplication with scalar: `a * 2`
 - Bitwise XOR on every coordinate: `a ^ 3` returns vector with XORed coords
 - Vector length: `len a`
+- Vector modification - modifies a verctor's coordinates
 
 ## Installation
 
