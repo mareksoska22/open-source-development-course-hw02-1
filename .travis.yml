@@ -5,6 +5,7 @@ dist: bionic
 branches:
   only:
     - pr/step1
+    - pr/step2
 
 addons:
   apt:
