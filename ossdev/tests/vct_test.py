@@ -25,9 +25,8 @@ class VectorTest(unittest.TestCase):
         self.assertEqual(a.dot(b), 0)
 
     def test_lenght(self):
-        # Uncomment after passing
-        # self.assertAlmostEqual(Vector([2, 4]).length(), 4.47213595499, 3)
-        # self.assertAlmostEqual(Vector([2, 4, 5]).length(), 6.708203932499369, 3)
+        self.assertAlmostEqual(Vector([2, 4]).length(), 4.47213595499, 3)
+        self.assertAlmostEqual(Vector([2, 4, 5]).length(), 6.708203932499369, 3)
         return
 
 
@@ -89,6 +88,14 @@ class VectorTest(unittest.TestCase):
 
         self.assertEqual(a.__xor__(2).get(), [0, 0, 0, 0])
         self.assertEqual(b.__xor__(3).get(), [0, 1, 1, 0])
+
+    def test_and(self):
+        a = Vector([3, 2, 2, 3])
+        b = Vector([1, 1, 1, 1])
+
+        self.assertEqual(a.__and__(a).get(), a.get())
+        self.assertEqual(b.__and__(a).get(), [1, 0, 0, 1])
+        self.assertEqual(a.__and__(b).get(), [1, 0, 0, 1])
 
     def test_setitem(self):
         a = Vector([1, 2, 3, 4, 5])
