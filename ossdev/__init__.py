@@ -69,22 +69,18 @@ class Vector:
         elif isinstance(other, Vector):
             if len(self) != len(other): raise ValueError('Incompatible size')
             return Vector([self.d[i] + other[i] for i in range(len(self))])
+        else:
+            raise ValueError('Invalid operand')
 
     # Function for subtraction, not defined for not matching vectors dimensions
     def __sub__(self, other):
-        if isinstance(other, int):
-            return Vector([x - other for x in self.d])
-        elif isinstance(other, Vector):
-            return Vector([self.d[i] - other[i] for i in range(len(self))])
-        # TODO: implement vector subtraction, comment change to make conflict
-        # you may use __add__() and negation, like return (-self + other)
-        return None
+        return self.__neg__().__add__(other).__neg__()
 
     def __mul__(self, other):
         if isinstance(other, int):
             return Vector([x * other for x in self.d])
         elif isinstance(other, Vector):
-            # TODO: add size checks
+            if len(self) != len(other): raise ValueError('Incompatible size')
             if self.is_row == other.is_row:
                 return Vector([self.d[i] * other[i] for i in range(len(self))])  # Hadamard product
             elif self.is_row:
@@ -98,29 +94,28 @@ class Vector:
             raise ValueError('Invalid operand')
 
     def __xor__(self, other):
-        # TODO: support both vector element-wise XOR and by-scalar xor (like in __add__)
-        # TODO: add size check
         if isinstance(other, int):
             return Vector([x ^ other for x in self.d])
-        return Vector([self.d[i] ^ other[i] for i in range(len(self))])
+        elif isinstance(other, Vector):
+            if len(self) != len(other): raise ValueError('Incompatible size')
+            return Vector([self.d[i] ^ other[i] for i in range(len(self))])
+        else:
+            raise ValueError('Invalid operand')
 
     def __and__(self, other):
         if isinstance(other, int):
             return Vector([x & other for x in self.d])
         elif isinstance(other, Vector):
-            # TODO: add size check
+            if len(self) != len(other): raise ValueError('Incompatible size')
             return Vector([self.d[i] & other[i] for i in range(len(self))])
         else:
             raise ValueError('Invalid operand')
-
 
     def length(self):
         return math.sqrt(sum(x*x for x in self.d))
 
     def dot(self, other):
-        # TODO: implement dot-product, i.e., a.b = \sum_i a[i]*b[i],
-        # return sum(self[i]*other[i] for i in range(len(self)))
-        return 0
+        return sum(self[i]*other[i] for i in range(len(self)))
 
     def transpose(self):
         v = Vector(self.d)
