@@ -96,6 +96,7 @@ class VectorTest(unittest.TestCase):
         self.assertEqual(a.__and__(a).get(), a.get())
         self.assertEqual(b.__and__(a).get(), [1, 0, 0, 1])
         self.assertEqual(a.__and__(b).get(), [1, 0, 0, 1])
+        self.assertEqual(a.__and__(0).get(), [0, 0, 0, 0])
 
     def test_setitem(self):
         a = Vector([1, 2, 3, 4, 5])
